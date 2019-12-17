@@ -98,7 +98,7 @@ $('#container').click(function (event) {
 
     let clicked = event.target.id;
     let chosen;
-    // set
+    setProduct();
 
     if (clicked === 'left-image') {
         chosen = Products.left;
@@ -204,7 +204,23 @@ function renderChart() {
     });
 }
 
+function getProduct() {
+    let storedData = JSON.parse(localStorage.getItem('product'))
+    if (storedData) {
+        Products.all = storedData;
+    }
+
+    renderList();
+}
+
+function setProduct() {
+    let productString = JSON.stringify(Products.all)
+    localStorage.setItem('product', JSON.stringify(Products.all))
+}
+
+
 renderList();
 render();
-renderChart();
+// renderChart();
+getProduct();
 
